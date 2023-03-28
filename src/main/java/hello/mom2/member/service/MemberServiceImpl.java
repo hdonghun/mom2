@@ -37,26 +37,16 @@ public class MemberServiceImpl implements MemberService {
 
 
     private void validateDuplicateMember(Member member) {
-        memberRepository.findByUsername(member.getUsername())
+        memberRepository.findByMemberName(member.getMembername())
                 .ifPresent(m -> {
-                    throw new IllegalStateException("이미 존재하는 회원입니다.");
+                    throw new IllegalStateException("이미 존재하는 회원이름입니다.");
+                });
+        memberRepository.findByEmail(member.getEmail())
+                .ifPresent(m -> {
+                    throw new IllegalStateException("이미 존재하는 회원이메일입니다.");
                 });
     }
 
 
 
-    @Override
-    public Optional<Member> findMember(Long id) {
-        return memberRepository.findById(id);
-    }
-
-    @Override
-    public Optional<Member> findMemberByUsername(String username) {
-        return memberRepository.findByUsername(username);
-    }
-
-    @Override
-    public List<Member> findAllMembers() {
-        return memberRepository.findAll();
-    }
 }
