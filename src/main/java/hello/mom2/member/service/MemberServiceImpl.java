@@ -20,10 +20,21 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
-    public Member join(Member member) {
+    public Member sign(Member member) {
         validateDuplicateMember(member);
         return memberRepository.save(member);
     }
+
+    @Override
+    public Member login(Member member) {
+        memberRepository.findById(member.getId());
+        if (member != null && member.getPassword().equals(login(member))) {
+            return member;
+        } else {
+            return null;
+        }
+    }
+
 
     private void validateDuplicateMember(Member member) {
         memberRepository.findByUsername(member.getUsername())
@@ -31,6 +42,8 @@ public class MemberServiceImpl implements MemberService {
                     throw new IllegalStateException("이미 존재하는 회원입니다.");
                 });
     }
+
+
 
     @Override
     public Optional<Member> findMember(Long id) {
