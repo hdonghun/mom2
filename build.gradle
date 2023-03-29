@@ -29,10 +29,13 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 
 //	//My sql driver
-//	implementation 'mysql:mysql-connector-java:8.0.23'
+	implementation 'mysql:mysql-connector-java:8.0.24'
 
-	//h2
-	implementation 'com.h2database:h2:1.4.200'
+//	//h2
+//	implementation 'com.h2database:h2:1.4.200'
+
+//	//스프링 security
+//	implementation 'org.springframework.boot:spring-boot-starter-security'
 
 }
 
