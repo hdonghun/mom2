@@ -7,6 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class Mom2Application {
 
 	public static void main(String[] args) {
+
 		SpringApplication.run(Mom2Application.class, args);
 	}
 
