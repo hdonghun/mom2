@@ -1,37 +1,33 @@
-<!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
-<head>
-  <meta charset="UTF-8">
-  <title th:text="\${post.title}"></title>
+<!-- posts.html -->
+<table class="table" xmlns:th="http://www.w3.org/1999/xhtml">
+  <thead class="thead-light">
+  <tr>
+    <th>번호</th>
+    <th>제목</th>
+    <th>작성자</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="post : ${posts}">
+    <td th:text="${post.id}"></td>
+    <td>
+      <a th:href="@{/posts/{id}(id=${post.id})}" th:text="${post.title}" class="post-title"></a>
+    </td>
+    <td th:text="${post.username}"></td>
+  </tr>
+  </tbody>
+</table>
+<div id="post-content"></div>
 
-  <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-</head>
-<body>
-
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">게시판</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarNav">
-    <ul class="navbar-nav">
-      <li class="nav-item active">
-        <a class="nav-link" href="/posts/list">게시글 목록</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/posts/create">게시글 작성</a>
-      </li>
-    </ul>
-  </div>
-</nav>
-
-<div class="container mt-5">
-  <h1 th:text="\${post.title}"></h1>
-  <p th:text="\${post.content}"></p>
-</div>
-
-<!-- Bootstrap JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-</body>
-</html>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('.post-title').click(function(e) {
+            e.preventDefault();
+            var url = $(this).attr('href');
+            $.get(url, function(data) {
+                $('#post-content').html(data);
+            });
+        });
+    });
+</script>

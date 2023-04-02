@@ -1,27 +1,26 @@
 package hello.mom2.mainpost.controller;
 
 import hello.mom2.mainpost.domain.Post;
+import hello.mom2.mainpost.domain.PostDto;
 import hello.mom2.mainpost.repository.PostRepository;
-import hello.mom2.mainpost.service.PostServiceImpl;
-import org.springframework.beans.factory.annotation.Autowired;
+import hello.mom2.mainpost.service.PostService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
 
 @Controller
 public class PostController {
-    @Autowired
-    private PostRepository postRepository;
-    @Autowired
-    private PostServiceImpl postService;
+    private final PostService postService;
+    private final PostRepository postRepository;
 
-    @GetMapping("/posts/{id}")
-    public String detail(@PathVariable Long id, Model model) {
-        Post post = postService.findById(id);
-        model.addAttribute("post", post);
-        return "posts/detail";
+    public PostController(PostService postService, PostRepository postRepository) {
+        this.postService = postService;
+        this.postRepository = postRepository;
     }
     @GetMapping("/posts")
     public String list(Model model) {
@@ -29,19 +28,23 @@ public class PostController {
         model.addAttribute("posts", posts);
         return "posts/list";
     }
+    @GetMapping("/posts/{id}")
+    public String getPost(@PathVariable Long id, Model model) {
+        // id에 해당하는 게시글을 DB에서 조회하여 model에 저장
+        Post post = postRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid post id"));
+        model.addAttribute("post", post);
 
-    ///////////////////////////////////////////////////////////////////////////////////////////////////////
-    @GetMapping("/posts/create")
-    public String create() {
-        return "posts/create";
+        return "posts/detail"; // 상세 내용을 보여줄 view의 이름을 리턴
     }
-    @PostMapping("/posts/create")
-    public String store(@ModelAttribute Post post) {
-        postService.save(post);
-        System.out.println("게시글 작성 등록이 성공하였습니다.");
+    @GetMapping("/posts/create")
+    public String createForm(Model model) {
+        model.addAttribute("postDto", new PostDto());
+        return "posts/createForm";
+    }
+    @PostMapping("posts/createForm")
+    public String create(@ModelAttribute PostDto postDto) {
+        postService.create(postDto);
         return "redirect:/posts/list";
     }
 
-
 }
-

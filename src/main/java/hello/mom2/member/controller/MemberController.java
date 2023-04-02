@@ -30,7 +30,7 @@ public class MemberController {
     public String postSignup(Member member) {
         // 회원가입 처리 로직
         memberService.sign(member);
-
+        System.out.println("회원가입을 성공하였습니다.");
 //        return "redirect:/";
         return "redirect:/?signup_success=true";
     }
@@ -44,6 +44,7 @@ public class MemberController {
     public String login(@RequestParam String username, @RequestParam String password) {
         boolean result = memberService.authenticate(username, password);
         if (result) {
+            System.out.println("로그인을 성공하였습니다.");
             return "redirect:/";
         } else {
             return "login";
@@ -55,6 +56,7 @@ public class MemberController {
     @GetMapping("/member/logout")
     public String getLogout(HttpSession session) {
         session.removeAttribute("member");
+        System.out.println("로그아웃 하였습니다.");
         return "redirect:";
     }
 

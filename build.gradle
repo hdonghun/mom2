@@ -37,6 +37,13 @@ dependencies {
 //	//스프링 security
 //	implementation 'org.springframework.boot:spring-boot-starter-security'
 
+	// MyBatis Core
+	implementation 'org.mybatis:mybatis:3.5.6'
+
+	// MyBatis Spring Boot Starter
+	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.2.0'
+
+
 }
 
 tasks.named('test') {
