@@ -1,7 +1,7 @@
 package hello.mom2.mainpost.service;
 
 import hello.mom2.mainpost.domain.Post;
-import hello.mom2.mainpost.domain.PostDto;
+import hello.mom2.mainpost.dto.PostDto;
 import hello.mom2.mainpost.repository.PostRepository;
 import org.springframework.stereotype.Service;
 

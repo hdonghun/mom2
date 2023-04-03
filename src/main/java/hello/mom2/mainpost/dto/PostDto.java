@@ -1,4 +1,4 @@
-package hello.mom2.mainpost.domain;
+package hello.mom2.mainpost.dto;
 
 import lombok.Getter;
 import lombok.Setter;
