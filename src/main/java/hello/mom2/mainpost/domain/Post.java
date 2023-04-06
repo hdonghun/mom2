@@ -19,5 +19,4 @@ public class Post {
         private String content;
         private String username;
 
-        // 생성자, getter, setter 생략
 }
