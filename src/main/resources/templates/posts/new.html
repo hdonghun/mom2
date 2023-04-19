@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>게시물 작성</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    body {
+      background-color: #F5DEB3;
+      font-family: 'Noto Sans KR', sans-serif;
+    }
+    h2 {
+      color: #8B4513;
+    }
+    button.btn-primary {
+      background-color: #CD853F;
+      border-color: #CD853F;
+    }
+    button.btn-primary:hover {
+      background-color: #8B4513;
+      border-color: #8B4513;
+    }
+  </style>
+</head>
+<body>
+<div class="container mt-5">
+  <h2>게시물 작성하기</h2>
+  <form method="post" action="/posts/new" enctype="multipart/form-data">
+    <div class="form-group">
+      <label for="title">제목</label>
+      <input type="text" class="form-control" id="title" name="title">
+    </div>
+    <div class="form-group">
+      <label for="content">내용</label>
+      <textarea class="form-control" id="content" name="content"></textarea>
+    </div>
+    <div class="form-group">
+      <label for="image">이미지 업로드</label>
+      <input type="file" class="form-control-file" id="image" name="image">
+    </div>
+    <button type="submit" class="btn btn-primary">게시물 등록</button>
+  </form>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

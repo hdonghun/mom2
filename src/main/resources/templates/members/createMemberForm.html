@@ -2,9 +2,30 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragments/header :: header" />
 <style>
+ body {
+      font-family: 'Roboto', sans-serif;
+      font-size: 16px;
+       }
+
+
+ /* 커스텀 버튼 스타일 */
+ .btn-custom {
+     background-color: #8F9779;
+     color: #FFF;
+     border-radius: 30px;
+     font-weight: bold;
+     letter-spacing: 1px;
+     transition: all 0.3s ease-in-out;
+            }
+
+ input.form-control {
+    height: 40px;
+    border-radius: 10px;
+                    }
+
  .fieldError {
  border-color: #bd2130;
- }
+              }
 </style>
 <body>
 <div class="container">
